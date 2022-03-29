@@ -3,6 +3,8 @@
 #define dim (9)
 
 /* Create matrix 9*9
+
+aaaaaaaaaaaa
 Create a function to fill all the diagonl 3*3 matrices randomly
 Fill recursively the rest of the non-diagonal matrices:
 	a) for every cell to be filled, we try all numbers until we find a safe number to be placed
