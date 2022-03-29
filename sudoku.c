@@ -41,9 +41,9 @@ int** fill_grid(){
 		}
 		for (int x=0;x<=2;x++){
 			for (int y=0;y<=2;y++){
-				int n = (rand()%9) +1;
+				int n = rand()%9 +1;
 				while (processed[n]==1){
-					n=(rand()%9) +1;
+					n=rand()%9 +1;
 				}
 				processed[n]=1;
 				area[x+3*k][y+3*k] = n;
