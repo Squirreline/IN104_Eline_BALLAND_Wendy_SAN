@@ -3,8 +3,6 @@
 #define dim (9)
 
 /* Create matrix 9*9
-
-aaaaaaaaaaaa
 Create a function to fill all the diagonl 3*3 matrices randomly
 Fill recursively the rest of the non-diagonal matrices:
 	a) for every cell to be filled, we try all numbers until we find a safe number to be placed
@@ -29,15 +27,16 @@ remplir (int n, int x, int y) -> void (affichage de la nouvelle matrice remplie)
 
 int** fill_grid(){
 	/*On crée une grille vide*/
+	srand(time(NULL));
 	int** area = malloc(sizeof(int*));
 	for (int i=0;i<9;i++) {
 		area[i]=malloc(sizeof(int));
 	}
-	/*On crée une liste des entiers que l'on va utiliser pour remplir les blocs diagonaux*/
-	for (int k=0;k<2;k++){
+	/*On remplit les blocs diagonaux, indépendants entre eux*/
+	for (int k=0;k<=2;k++){
 		int processed[9];
-		for (int x=0;x<2;x++){
-			for (int y=0;y<2;y++){
+		for (int x=0;x<=2;x++){
+			for (int y=0;y<=2;y++){
 				int n = rand()%8 +1;
 				while (processed[n]==1){
 					n=rand()%8 +1;
@@ -48,8 +47,16 @@ int** fill_grid(){
 			}
 		printf("\n");
 		}
+	printf("\n");
 	}
+	/*On remplit les blocs restant*/
+	//???????????????????????//
+		
 	return area;
+}
+
+int** remove(int** grid, int k){
+
 }
 
 int main(){
