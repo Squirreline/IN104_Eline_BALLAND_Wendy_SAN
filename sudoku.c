@@ -33,13 +33,17 @@ int** fill_grid(){
 		area[i]=malloc(sizeof(int));
 	}
 	/*On remplit les blocs diagonaux, indépendants entre eux*/
+	int processed[9];
 	for (int k=0;k<=2;k++){
-		int processed[9];
+	/*On initialise le tableau des nombres traités*/
+		for (int i=0;i<9;i++){
+			processed[i]=0;
+		}
 		for (int x=0;x<=2;x++){
 			for (int y=0;y<=2;y++){
-				int n = rand()%8 +1;
+				int n = (rand()%9) +1;
 				while (processed[n]==1){
-					n=rand()%8 +1;
+					n=(rand()%9) +1;
 				}
 				processed[n]=1;
 				area[x+3*k][y+3*k] = n;
@@ -49,15 +53,14 @@ int** fill_grid(){
 		}
 	printf("\n");
 	}
+	printf("%d",area[9][9]);
 	/*On remplit les blocs restant*/
 	//???????????????????????//
 		
 	return area;
-}
-
-int** remove(int** grid, int k){
 
 }
+
 
 int main(){
 	int** grille = fill_grid();
