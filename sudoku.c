@@ -28,9 +28,9 @@ remplir (int n, int x, int y) -> void (affichage de la nouvelle matrice remplie)
 int** fill_grid(){
 	/*On crée une grille vide*/
 	srand(time(NULL));
-	int** area = malloc(sizeof(int*));
+	int** area = malloc(sizeof(int*)*9);
 	for (int i=0;i<9;i++) {
-		area[i]=malloc(sizeof(int));
+		area[i]=malloc(sizeof(int)*9);
 	}
 	/*On remplit les blocs diagonaux, indépendants entre eux*/
 	int processed[9];
@@ -39,27 +39,39 @@ int** fill_grid(){
 		for (int i=0;i<9;i++){
 			processed[i]=0;
 		}
+		int c =0;
 		for (int x=0;x<=2;x++){
 			for (int y=0;y<=2;y++){
 				int n = rand()%9 +1;
-				while (processed[n]==1){
+				while ((processed[n-1]==1)&&(c!=9)){
 					n=rand()%9 +1;
 				}
-				processed[n]=1;
-				area[x+3*k][y+3*k] = n;
+				processed[n-1]=1;
+				c=c+1;
+				area[3*x + k][3*y + k] = n;
 				printf("%d ",n);
 			}
 		printf("\n");
 		}
 	printf("\n");
 	}
-	printf("%d",area[9][9]);
+	/*printf("%d",area[8][8]);
+	for (int i=0;i<=2;i++){
+		for (int j=0;j<=2;j++){
+			if (i!=j){
+			/*On initialise le tableau des nombres traités
+				for (int i=0;i<9;i++){
+					processed[i]=0;
+				}
+			}
+			int n = rand()%9 +1;*/
+			
+			
 	/*On remplit les blocs restant*/
 	//???????????????????????//
-		
 	return area;
-
 }
+
 
 
 int main(){
