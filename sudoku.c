@@ -95,21 +95,24 @@ int** fill_grid(){
 			processed[i]=0;
 		}
 		for (int x=0;x<dim;x++){
-			int c = 0;
 			/*On ne traite pas les carrés diagonaux, on déclare simplement les entiers déjà présents sur la ligne*/
 			if (((x<=2)&&(y<=2))||((3<=x)&&(x<=5)&&(3<=y)&&(y<=5))||((6<=x)&&(x<=8)&&(6<=y)&&(y<=8))){
 				processed[area[x][y]-1]=1;
-				printf("f\n");
-				c=c+1;
 			}
 			int n = rand()%dim+1;
-			while ((processed[area[x][y]-1]==1)&&(c!=dim)){
-				n=rand()%dim +1;
-			}
-			if ((check_line(area,x,n))&&(check_column(area,y,n))&&(check_square(area,x,y,n))){
-				c=c+1;
-				processed[area[x][y]-1]=1;
-				area[x][y]=n;
+			bool res=false; /*Booléen qui nous indique si la case a pu être remplie*/
+			printf("f\n");
+			while (res==false){
+				printf("f\n");
+				if ((processed[n-1]==0)&&(check_line(area,x,n))&&(check_column(area,y,n))&&(check_square(area,x,y,n))){
+					processed[n-1]=1;
+					printf("f\n");
+					area[x][y]=n;
+					res=true;
+
+				}
+				n=rand()%dim+1;
+			
 			}
 		}
 	}
