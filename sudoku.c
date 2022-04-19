@@ -4,28 +4,6 @@
 #include "sudoku.h"
 #define dim (9)
 
-/* Create matrix 9*9
-Create a function to fill all the diagonl 3*3 matrices randomly
-Fill recursively the rest of the non-diagonal matrices:
-	a) for every cell to be filled, we try all numbers until we find a safe number to be placed
-	b) define a function that goes through the cell column and row to make sure that a number is safe in that position
-
-Once the matrix is fully grilled, remove K elements randomly  to complete the game
-	a) removing more elements will make the game harder, so you can create multiple difficulties (keep 10/matrix for easy, 8 for medium, 6 for hard)
-	
-Print out the matrix
-
-By using scanf ask the user to fill a coordinate of a cell with a value from 1 to 9, if value is not in this range send error if it is, update board
-
-*/
-
-/* creer matrice () -> matrice remplie
-remove (int K) -> matrice sans K éléments, ancienne matrice
-afficher (matrice) -> void (affichage uniquement)
-remplir (int n, int x, int y) -> void (affichage de la nouvelle matrice remplie)
-*/
-
-/*void display (int** matrix, int size);*/
 
 /*Fonction qui nous indique si on peut insérer l'entier sur la ligne*/
 bool check_line(int** grid, int line, int value){
@@ -118,20 +96,20 @@ int** fill_grid(){
 		}
 		for (int x=0;x<dim;x++){
 			int c = 0;
-			/*On ne traite pas les carrés diagonaux, on déclare simplement les entiers présents sur la ligne*/
-			if (((x<=2)&&(y<=2))||((3<=x<=5)&&(3<=y<=5))||((6<=x<=8)&&(6<=y<=8))){
+			/*On ne traite pas les carrés diagonaux, on déclare simplement les entiers déjà présents sur la ligne*/
+			if (((x<=2)&&(y<=2))||((3<=x)&&(x<=5)&&(3<=y)&&(y<=5))||((6<=x)&&(x<=8)&&(6<=y)&&(y<=8))){
 				processed[area[x][y]-1]=1;
+				printf("f\n");
 				c=c+1;
-			} else {
-				int n = rand()%dim+1;
-				while ((processed[area[x][y]-1]==1)&&(c!=dim)){
-					n=rand()%dim +1;
-				}
-				if ((check_line(area,x,n))&&(check_column(area,y,n))&&(check_square(area,x,y,n))){
-					c=c+1;
-					processed[area[x][y]-1]=1;
-					area[x][y]=n;
-				}
+			}
+			int n = rand()%dim+1;
+			while ((processed[area[x][y]-1]==1)&&(c!=dim)){
+				n=rand()%dim +1;
+			}
+			if ((check_line(area,x,n))&&(check_column(area,y,n))&&(check_square(area,x,y,n))){
+				c=c+1;
+				processed[area[x][y]-1]=1;
+				area[x][y]=n;
 			}
 		}
 	}
