@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "sudoku.h"
 #define dim (9)
 
 /* Create matrix 9*9
@@ -62,6 +63,24 @@ bool check_square(int** grid, int x, int y, int value){
 	return true;
 }
 
+void display(int** grid){
+		for (int x=0;x<dim;x++){
+			for (int y=0;y<dim;y++){
+				if ((y%3==0)&&(y+1<dim)&&(y!=0)){
+					printf("| ");
+				}
+				printf("%d ",grid[x][y]);
+			}
+			printf("\n");
+			if (((x+1)%3==0)&&(x!=dim-1)){
+				printf("----------------------\n");
+			}
+		}
+		printf("\n");
+		
+}
+
+
 int** fill_grid(){
 	/*On crée une grille vide*/
 	srand(time(NULL));
@@ -85,33 +104,32 @@ int** fill_grid(){
 				}
 				processed[n-1]=1;
 				c=c+1;
-				area[3*x + k][3*y + k] = n;
+				area[x + 3*k][y + 3*k] = n;
 				printf("%d ",n);
 			}
 		printf("\n");
 		}
 	printf("\n");
 	}
-	/*Pour le remplissage des autres carrées, on procède ligne par ligne*/
+	/*Pour le remplissage des autres carrés, on procède ligne par ligne*/
 	for (int y=0;y<dim;y++){
 		for (int i=0;i<dim;i++){
 			processed[i]=0;
 		}
 		for (int x=0;x<dim;x++){
-			/*On isole le carré du haut déjà traité*/
 			int c = 0;
 			/*On ne traite pas les carrés diagonaux, on déclare simplement les entiers présents sur la ligne*/
 			if (((x<=2)&&(y<=2))||((3<=x<=5)&&(3<=y<=5))||((6<=x<=8)&&(6<=y<=8))){
-				processed[x+1]=1;
+				processed[area[x][y]-1]=1;
 				c=c+1;
 			} else {
 				int n = rand()%dim+1;
-				while ((processed[x+1]==1)&&(c!=dim)){
+				while ((processed[area[x][y]-1]==1)&&(c!=dim)){
 					n=rand()%dim +1;
 				}
 				if ((check_line(area,x,n))&&(check_column(area,y,n))&&(check_square(area,x,y,n))){
 					c=c+1;
-					processed[x+1]=1;
+					processed[area[x][y]-1]=1;
 					area[x][y]=n;
 				}
 			}
@@ -120,8 +138,12 @@ int** fill_grid(){
 	return area;
 }
 
+
+
+
 int main(){
 	int** grille = fill_grid();
+	display(grille);
 };
 
 	
