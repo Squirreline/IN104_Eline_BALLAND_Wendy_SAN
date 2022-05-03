@@ -32,13 +32,20 @@ bool check_square(int** grid, int x, int y, int value){
 	int x0 = (int)(x/3)*3;
 	int y0 = (int)(y/3)*3;
 	for (int i=x0;i<x0+3;i++){
-		for (int j=y0;j<y0+3;y++){
+		for (int j=y0;j<y0+3;j++){
 			if (grid[i][j]==value){
 				return false;
 			}
 		}
 	}
 	return true;
+}
+
+bool is_allowed(int** grid, int x, int y, int value){
+	bool b1 = check_line(grid,x,value);
+	bool b2 = check_column(grid,y,value);
+	bool b3 = check_square(grid,x,y,value);
+	return ((b1&&b2)&&b3);
 }
 
 void display(int** grid){
@@ -59,10 +66,34 @@ void display(int** grid){
 }
 
 
+bool rec_fill(int** area){
+	for (int x=0;x<9;x++){
+		for (int y=0;y<9;y++){
+			if (area[x][y]==0){
+				for (int n=1;n<=9;n++){
+					if (is_allowed(area,x,y,n)){
+						area[x][y]=n;
+						if (rec_fill(area)){
+							return true;
+						} else {
+							area[x][y]=0;
+						}
+					}
+				}
+			return false;
+			}
+		}
+	}
+	return true;
+}
+
+
+
 int** fill_grid(){
 	/*On crée une grille vide*/
-	srand(time(NULL));
 	int** area = malloc(sizeof(int*)*dim);
+	srand(time(NULL));
+	//int** area = malloc(sizeof(int*)*dim);
 	for (int i=0;i<dim;i++) {
 		area[i]=malloc(sizeof(int)*dim);
 	}
@@ -89,42 +120,13 @@ int** fill_grid(){
 		}
 	printf("\n");
 	}
-	/*Pour le remplissage des autres carrés, on procède ligne par ligne*/
-	for (int y=0;y<dim;y++){
-		for (int i=0;i<dim;i++){
-			processed[i]=0;
-		}
-		for (int x=0;x<dim;x++){
-			/*On ne traite pas les carrés diagonaux, on déclare simplement les entiers déjà présents sur la ligne*/
-			if (((x<=2)&&(y<=2))||((3<=x)&&(x<=5)&&(3<=y)&&(y<=5))||((6<=x)&&(x<=8)&&(6<=y)&&(y<=8))){
-				processed[area[x][y]-1]=1;
-			}
-			int n = rand()%dim+1;
-			bool res=false; /*Booléen qui nous indique si la case a pu être remplie*/
-			printf("f\n");
-			while (res==false){
-				printf("f\n");
-				if ((processed[n-1]==0)&&(check_line(area,x,n))&&(check_column(area,y,n))&&(check_square(area,x,y,n))){
-					processed[n-1]=1;
-					printf("f\n");
-					area[x][y]=n;
-					res=true;
-
-				}
-				n=rand()%dim+1;
-			
-			}
-		}
-	}
-	return area;
+	/*Remplissage récursif des autres cases*/
+	bool b = rec_fill(area);
 }
-
-
 
 
 int main(){
 	int** grille = fill_grid();
-	display(grille);
 };
 
 	
