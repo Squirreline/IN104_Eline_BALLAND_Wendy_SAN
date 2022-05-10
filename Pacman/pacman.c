@@ -35,8 +35,12 @@ char play_area[H][W] =
    { "#                                                          #" },
    { "#                                                          #" },
    { "############################################################" }
-}; 
-	
+};
+
+
+/* Initialisation du pacman*/
+struct pacman PACMAN = {{1,1}, 0, 0, 3, 0};
+
 void init(){
 	for (int i=0;i<W;i++){
 		for (int j=0;j<H;j++){
@@ -59,7 +63,7 @@ void init(){
 		NR_GHOSTS[i].vy = 0;
 		play_area[x][y] = 'G';
 	}
-	
+
 }
 
 /*void keyboard(struct pacman PACMAN){
@@ -85,11 +89,11 @@ void movePacman(struct pacman PACMAN){
 			PACMAN.food += 1;
 		}
 		PACMAN.c.x += nx ;
-		PACMAN.c.y += ny ; 
+		PACMAN.c.y += ny ;
 	}
 }
-		
-		
+
+
 void check_lives(struct pacman PACMAN){
 	if (PACMAN.lives<0){
 		printf("No more lives. Food collected : %d\n",PACMAN.food);
@@ -102,7 +106,7 @@ void check_lives(struct pacman PACMAN){
 		}
 	}
 }
-	
+
 
 
 int main(){
