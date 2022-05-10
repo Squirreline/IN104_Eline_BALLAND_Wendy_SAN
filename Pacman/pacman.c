@@ -41,6 +41,7 @@ char play_area[H][W] =
 /* Initialisation du pacman*/
 struct pacman PACMAN = {{1,1}, 0, 0, 3, 0};
 
+struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*NR_GHOSTS);
 void init(){
 	for (int i=0;i<W;i++){
 		for (int j=0;j<H;j++){
@@ -57,10 +58,11 @@ void init(){
 			int x = rand()%(W-1) + 1;
 			int y = rand()%(H-1) +1;
 		}
-		NR_GHOSTS[i].c.x = x;
-		NR_GHOSTS[i].c.y = y;
-		NR_GHOSTS[i].vx = 0;
-		NR_GHOSTS[i].vy = 0;
+		struct ghost GHOST;
+		GHOSTS[i].c.x = x;
+		GHOSTS[i].c.y = y;
+		GHOSTS[i].vx = 0;
+		GHOSTS[i].vy = 0;
 		play_area[x][y] = 'G';
 	}
 
