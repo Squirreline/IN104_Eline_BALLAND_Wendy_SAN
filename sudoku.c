@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "sudoku.h"
+#include "erase.h"
 #define dim (9)
 
 
-<<<<<<< HEAD
-=======
 /*Fonction qui nous indique si on peut insérer l'entier sur la ligne*/
->>>>>>> 85d836653e4db8516c044a510447c596068c531f
 bool check_line(int** grid, int line, int value){
 	for (int i=0;i<dim;i++){
 		if (grid[line][i]==value){
@@ -17,7 +15,7 @@ bool check_line(int** grid, int line, int value){
 	}
 	return true;
 }
-
+			
 /*Fonction qui nous indique si on peut insérer l'entier sur la colonne*/
 bool check_column(int** grid, int column, int value){
 	for (int i=0;i<dim;i++){
@@ -67,7 +65,6 @@ void display(int** grid){
 		printf("\n");
 		
 }
-
 
 bool rec_fill(int** area){
 	for (int x=0;x<9;x++){
@@ -125,9 +122,60 @@ int** fill_grid(){
 	}
 	/*Remplissage récursif des autres cases*/
 	bool b = rec_fill(area);
+	return area;
 }
 
+void play(int n_values){
+  int ** grid = fill_grid();
+  int ** play_grid = erase_values(grid, n_values);
+  int n_play = 0; // compteur du nombre de case remplies par le joueur
+  int line, column, value;
+  bool good_grid = true;
+
+  while (n_play<n_values){
+    display(play_grid);
+    printf("\nIndiquez votre nombre sous la forme : ligne (0-8) colonne (0-8) valeur (1-9). Ex : 0 2 3\n");
+    scanf("%d %d %d", &line,&column,&value);
+    printf("\n");
+    if (play_grid[line][column] !=0){
+    	printf("Cette case est déjà remplie\n\n");
+    } else {
+    	if (grid[line][column] != value){
+      	good_grid = false;
+    	}
+    	play_grid[line][column] = value;
+    	n_play +=1;
+  	}
+  }
+  if (good_grid) {
+    printf("Bravo vous avez rempli la grille!\n");
+  }
+  else {
+    printf("La grille n'est pas bonne.\n");
+  }
+}
 
 int main(){
-	int** grille = fill_grid();
+	int** area = fill_grid();
+	display(area);
+	int difficulty;
+    printf("Choisissez votre difficulté : facile (1), intermédiaire (2), difficile (3)\n");
+    int n_values=0;
+    while (n_values==0){
+      scanf("%d",&difficulty);
+      if (difficulty==1){ n_values = 71;}
+      else if (difficulty==2){ n_values = 73;}
+      else if (difficulty==3){ n_values = 75;}
+      else { printf("Format de difficulté incorrect, merci de préciser.\n");}
+    }
+	int** grid = erase_values(area,n_values);
+	display(grid);
+	play(n_values);
 };
+
+	
+
+
+
+
+
