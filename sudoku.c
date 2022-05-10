@@ -114,11 +114,8 @@ int** fill_grid(){
 				processed[n-1]=1;
 				c=c+1;
 				area[x + 3*k][y + 3*k] = n;
-				printf("%d ",n);
 			}
-		printf("\n");
 		}
-	printf("\n");
 	}
 	/*Remplissage récursif des autres cases*/
 	bool b = rec_fill(area);
@@ -157,7 +154,7 @@ void play(int n_values){
 
 int main(){
 	int** area = fill_grid();
-	display(area);
+	//display(area);
 	int difficulty;
     printf("Choisissez votre difficulté : facile (1), intermédiaire (2), difficile (3)\n");
     int n_values=0;
