@@ -62,6 +62,49 @@ void init(){
 	
 }
 
+/*void keyboard(struct pacman PACMAN){
+}*/
+
+void movePacman(struct pacman PACMAN){
+	//Deleting Pacman from old position
+	play_area[PACMAN.c.x][PACMAN.c.y] = ' ' ;
+	//Computing new desired coordinates
+	int nx = PACMAN.nx + PACMAN.x ;
+	int ny = PACMAN.ny + PACMAN.y ;
+	//Testing whether or not there is a wall
+	if (play_area[nx][ny]=='#'){
+		PACMAN.nx = 0 ;
+		PACMAN.ny = 0 ;
+	}
+	if (play_area[nx][ny]=='G'){
+		PACMAN.lives +=-1 ;
+		PACMAN.c.x = 1 ;
+		PACMAN.c.y = 1 ;
+	} else {
+		if (play_area[nx][ny]=='.'){
+			PACMAN.food += 1;
+		}
+		PACMAN.c.x += nx ;
+		PACMAN.c.y += ny ; 
+	}
+}
+		
+		
+void check_lives(struct pacman PACMAN){
+	if (PACMAN.lives<0){
+		printf("No more lives. Food collected : %d\n",PACMAN.food);
+	} else {
+		for (int i=0; i<H; i++){
+			for (int j=0; j<W; j++){
+				printf("%s",play_area[i][j]);
+			}
+			printf("\n");
+		}
+	}
+}
+	
+
+
 int main(){
 	/*struct ghost allGhosts[NR_GHOSTS];*/
 	struct pacman PACMAN;
@@ -76,5 +119,4 @@ int main(){
 	char* fleche;
 	fscanf("%s",fleche);
 	printf("%s",fleche);
-
 }
