@@ -2,11 +2,14 @@ CC= gcc
 CFLAGS= -I -g
 LDLIBS= -lncurses
 
-end_file: pacman.o fleche.o structures.o main.o
-	$(CC) -o end_file pacman.c fleche.c main.c structures.h $(CFLAGS)
+end_file: pacman.o fleche.o main.o
+	$(CC) -o end_file pacman.o fleche.o main.o $(LDLIBS)
+
+pacman.o: pacman.c
+	$(CC) -c pacman.c $(CFLAGS)
 
 fleche.o: fleche.c fleche.h
-	$(CC) -o fleche.o fleche.c fleche.h $(CFLAGS)
+	$(CC) -c fleche.c $(CFLAGS)
 
 main.o: main.c structures.h
-	$(CC) -o main.o main.c structures.h $(CFLAGS)
+	$(CC) -c main.c $(CFLAGS)
