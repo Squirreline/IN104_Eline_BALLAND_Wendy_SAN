@@ -71,12 +71,12 @@ void init(){
 /*void keyboard(struct pacman PACMAN){
 }*/
 
-void movePacman(struct pacman PACMAN){
+void movePacman(struct pacman* PACMAN){
 	//Deleting Pacman from old position
 	play_area[PACMAN.c.x][PACMAN.c.y] = ' ' ;
 	//Computing new desired coordinates
-	int nx = PACMAN.nx + PACMAN.x ;
-	int ny = PACMAN.ny + PACMAN.y ;
+	int nx = PACMAN.nx + PACMAN.c.x ;
+	int ny = PACMAN.ny + PACMAN.c.y ;
 	//Testing whether or not there is a wall
 	if (play_area[nx][ny]=='#'){
 		PACMAN.nx = 0 ;
