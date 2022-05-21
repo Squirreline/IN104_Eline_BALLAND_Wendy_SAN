@@ -1,9 +1,8 @@
 CC= gcc
 CFLAGS= -I -g
 
-
 end_file: play.o erase.o construction.o check.o main.o
-	$(CC) -o end_file play.o erase.o construction.o check.o main.o $(LDLIBS)
+	$(CC) -o end_file play.o erase.o construction.o check.o main.o $(CFLAGS)
 
 play.o: play.c play.h
 	$(CC) -c play.c $(CFLAGS)
