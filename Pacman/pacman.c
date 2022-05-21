@@ -79,19 +79,19 @@ void movePacman(struct pacman* PACMAN){
 	int ny = PACMAN.ny + PACMAN.c.y ;
 	//Testing whether or not there is a wall
 	if (play_area[nx][ny]=='#'){
-		PACMAN.nx = 0 ;
-		PACMAN.ny = 0 ;
+		PACMAN->nx = 0 ;
+		PACMAN->ny = 0 ;
 	}
 	if (play_area[nx][ny]=='G'){
-		PACMAN.lives +=-1 ;
-		PACMAN.c.x = 1 ;
-		PACMAN.c.y = 1 ;
+		PACMAN->lives +=-1 ;
+		PACMAN->c->x = 1 ;
+		PACMAN->c->y = 1 ;
 	} else {
 		if (play_area[nx][ny]=='.'){
 			PACMAN.food += 1;
 		}
-		PACMAN.c.x += nx ;
-		PACMAN.c.y += ny ;
+		PACMAN->c->x += nx ;
+		PACMAN->c->y += ny ;
 	}
 }
 
@@ -115,12 +115,12 @@ int main(){
 	/*struct ghost allGhosts[NR_GHOSTS];*/
   	/* Initialisation du pacman*/
 	struct pacman* PACMAN;
-	PACMAN.c.x = 1;
-	PACMAN.c.y = 1;
-	PACMAN.nx = 0;
-	PACMAN.ny = 0;
-	PACMAN.lives = 3;
-	PACMAN.food = 0;
+	PACMAN->c->x = 1;
+	PACMAN->c->y = 1;
+	PACMAN->nx = 0;
+	PACMAN->ny = 0;
+	PACMAN->lives = 3;
+	PACMAN->food = 0;
 	/*Defining the playing area*/
 	char* fleche;
 	fscanf("%s",fleche);
