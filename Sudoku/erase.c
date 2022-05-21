@@ -23,7 +23,7 @@ int ** erase_values(int ** grid, int n_values){
   return play_grid;
 }
 
-void play(int n_values){
+/*void play(int n_values){
   int ** grid = fill_grid();
   int ** play_grid = erase_values(grid, n_values);
   int n_play = 0; // compteur du nombre de case remplies par le joueur
@@ -46,4 +46,4 @@ void play(int n_values){
   else {
     printf("La grille n'est pas bonne");
   }
-}
+}*/
