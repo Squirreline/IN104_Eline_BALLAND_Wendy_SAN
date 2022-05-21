@@ -40,7 +40,7 @@ char play_area[H][W] =
 
 
 
-struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*NR_GHOSTS);
+struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*3);
 
 void init(){
 	for (int i=0;i<W;i++){
