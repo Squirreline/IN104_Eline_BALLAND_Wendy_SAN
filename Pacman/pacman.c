@@ -40,7 +40,6 @@ char play_area[H][W] =
 
 
 
-struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*3);
 
 void init(){
 	for (int i=0;i<W;i++){
@@ -58,11 +57,11 @@ void init(){
 			int x = rand()%(W-1) + 1;
 			int y = rand()%(H-1) +1;
 		}
-		struct ghost GHOST;
-		GHOSTS[i].c.x = x;
-		GHOSTS[i].c.y = y;
-		GHOSTS[i].vx = 0;
-		GHOSTS[i].vy = 0;
+		all_the_ghosts[i].c.x = x;
+		all_the_ghosts[i].c.y = y;
+		all_the_ghosts[i].nx = 0;
+		all_the_ghosts[i].ny = 0;
+
 		play_area[x][y] = 'G';
 	}
 
@@ -121,6 +120,7 @@ int main(){
 	PACMAN->ny = 0;
 	PACMAN->lives = 3;
 	PACMAN->food = 0;
+	struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*NR_GHOSTS);
 	/*Defining the playing area*/
 	char* fleche;
 	fscanf("%s",fleche);
