@@ -41,10 +41,10 @@ char play_area[H][W] =
 
 
 
-void init(){
+void init(struct ghost* all_the_ghosts){
 	for (int i=0;i<W;i++){
 		for (int j=0;j<H;j++){
-			if (play_area[i][j]=' '){
+			if (play_area[i][j]==' '){
 				play_area[i][j]='.';
 			}
 		}
@@ -72,10 +72,10 @@ void init(){
 
 void movePacman(struct pacman* PACMAN){
 	//Deleting Pacman from old position
-	play_area[PACMAN.c.x][PACMAN.c.y] = ' ' ;
+	play_area[PACMAN->c.x][PACMAN->c.y] = ' ' ;
 	//Computing new desired coordinates
-	int nx = PACMAN.nx + PACMAN.c.x ;
-	int ny = PACMAN.ny + PACMAN.c.y ;
+	int nx = PACMAN->nx + PACMAN->c.x ;
+	int ny = PACMAN->ny + PACMAN->c.y ;
 	//Testing whether or not there is a wall
 	if (play_area[nx][ny]=='#'){
 		PACMAN->nx = 0 ;
@@ -83,21 +83,21 @@ void movePacman(struct pacman* PACMAN){
 	}
 	if (play_area[nx][ny]=='G'){
 		PACMAN->lives +=-1 ;
-		PACMAN->c->x = 1 ;
-		PACMAN->c->y = 1 ;
+		PACMAN->c.x = 1 ;
+		PACMAN->c.y = 1 ;
 	} else {
 		if (play_area[nx][ny]=='.'){
-			PACMAN.food += 1;
+			PACMAN->food += 1;
 		}
-		PACMAN->c->x += nx ;
-		PACMAN->c->y += ny ;
+		PACMAN->c.x += nx ;
+		PACMAN->c.y += ny ;
 	}
 }
 
 
-void check_lives(struct pacman PACMAN){
-	if (PACMAN.lives<0){
-		printf("No more lives. Food collected : %d\n",PACMAN.food);
+void check_lives(struct pacman* PACMAN){
+	if (PACMAN->lives<0){
+		printf("No more lives. Food collected : %d\n",PACMAN->food);
 	} else {
 		for (int i=0; i<H; i++){
 			for (int j=0; j<W; j++){
@@ -114,15 +114,13 @@ int main(){
 	/*struct ghost allGhosts[NR_GHOSTS];*/
   	/* Initialisation du pacman*/
 	struct pacman* PACMAN;
-	PACMAN->c->x = 1;
-	PACMAN->c->y = 1;
+	PACMAN->c.x = 1;
+	PACMAN->c.y = 1;
 	PACMAN->nx = 0;
 	PACMAN->ny = 0;
 	PACMAN->lives = 3;
 	PACMAN->food = 0;
 	struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*NR_GHOSTS);
 	/*Defining the playing area*/
-	char* fleche;
-	fscanf("%s",fleche);
-	printf("%s",fleche);
+	
 }

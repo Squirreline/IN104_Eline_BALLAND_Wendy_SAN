@@ -1,0 +1,1 @@
+void arrows(struct pacman *);
