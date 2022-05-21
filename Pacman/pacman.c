@@ -113,15 +113,14 @@ void check_lives(struct pacman PACMAN){
 
 int main(){
 	/*struct ghost allGhosts[NR_GHOSTS];*/
-  /* Initialisation du pacman*/
+  	/* Initialisation du pacman*/
 	struct pacman* PACMAN;
-  struct pacman PACMAN = {{1,1}, 0, 0, 3, 0};
-	PACMAN->c->x = 1;
-	PACMAN->c->y = 1;
-	PACMAN->nx = 0;
-	PACMAN->ny = 0;
-	PACMAN->lives = 3;
-	PACMAN->food = 0;*/
+	PACMAN.c.x = 1;
+	PACMAN.c.y = 1;
+	PACMAN.nx = 0;
+	PACMAN.ny = 0;
+	PACMAN.lives = 3;
+	PACMAN.food = 0;
 	/*Defining the playing area*/
 	char* fleche;
 	fscanf("%s",fleche);
