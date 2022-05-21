@@ -42,6 +42,7 @@ char play_area[H][W] =
 struct pacman PACMAN = {{1,1}, 0, 0, 3, 0};
 
 struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*NR_GHOSTS);
+
 void init(){
 	for (int i=0;i<W;i++){
 		for (int j=0;j<H;j++){
