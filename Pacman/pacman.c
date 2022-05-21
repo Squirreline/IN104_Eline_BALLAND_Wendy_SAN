@@ -38,8 +38,7 @@ char play_area[H][W] =
 };
 
 
-/* Initialisation du pacman*/
-struct pacman PACMAN = {{1,1}, 0, 0, 3, 0};
+
 
 struct ghost* all_the_ghosts = malloc(sizeof(struct ghost)*NR_GHOSTS);
 
@@ -114,13 +113,14 @@ void check_lives(struct pacman PACMAN){
 
 int main(){
 	/*struct ghost allGhosts[NR_GHOSTS];*/
-	struct pacman PACMAN;
-	/*Defining the spawning point*/
-	//PACMAN.c.x = 1;
-	/*PACMAN->c->y = 1;
+  /* Initialisation du pacman*/
+	struct pacman* PACMAN;
+  struct pacman PACMAN = {{1,1}, 0, 0, 3, 0};
+	PACMAN->c->x = 1;
+	PACMAN->c->y = 1;
 	PACMAN->nx = 0;
 	PACMAN->ny = 0;
-	PACMAN->lives = 0;
+	PACMAN->lives = 3;
 	PACMAN->food = 0;*/
 	/*Defining the playing area*/
 	char* fleche;
