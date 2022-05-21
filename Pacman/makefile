@@ -1,5 +1,5 @@
 CC= gcc
-CFLAGS= -I -g
+CFLAGS= -I -g -lncurses
 
 end_file: pacman.o fleche.o
 	$(CC) -o end_file pacman.c fleche.c $(CFLAGS)

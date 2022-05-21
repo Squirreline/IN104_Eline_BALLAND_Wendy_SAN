@@ -44,11 +44,4 @@ void arrows(struct pacman * PACMAN){
         refresh();
     }
     endwin(); //EDIT
-
-
-}
-int main(){
-
-  arrows();
-  return 0;
 }
