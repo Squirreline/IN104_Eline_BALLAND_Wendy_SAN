@@ -1,8 +1,8 @@
 CC= gcc
 CFLAGS= -I -g
 
-end_file: pacman.o play.o erase.o construction.o check.o main.o
-	$(CC) -o end_file pacman.o main.o $(CFLAGS)
+end_file: play.o erase.o construction.o check.o pacman.o main.o
+	$(CC) -o end_file play.o erase.o construction.o check.o pacman.o main.o $(CFLAGS)
 
 play.o: play.c play.h
 	$(CC) -c play.c $(CFLAGS)
@@ -16,8 +16,8 @@ construction.o: construction.c construction.h
 check.o: check.c check.h
 	$(CC) -c check.c $(CFLAGS)
 
-pacman.o: pacman.c
+pacman.o: pacman.c pacman.h structures.h
 	$(CC) -c pacman.c $(CFLAGS)
 
-main.o: main.c structures.h
+main.o: main.c
 	$(CC) -c main.c $(CFLAGS)
