@@ -1,9 +1,9 @@
 #include "play.h"
 #include "erase.h"
 
-void play(int n_values){
+void play(int n_values, int** play_grid){
   int ** grid = fill_grid();
-  int ** play_grid = erase_values(grid, n_values);
+  //int ** play_grid = erase_values(grid, n_values);
   int n_play = 0; // compteur du nombre de case remplies par le joueur
   int line, column, value;
   bool good_grid = true;

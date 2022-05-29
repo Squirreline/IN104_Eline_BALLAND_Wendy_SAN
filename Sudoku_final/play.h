@@ -3,4 +3,4 @@
 #include <stdbool.h>
 #define dim (9)
 
-void play(int);
+void play(int,int**);
