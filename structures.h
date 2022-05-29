@@ -1,3 +1,6 @@
+#ifndef __STRUCTURES_H__
+#define __STRUCTURES_H__
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -32,3 +35,5 @@ struct Ghost {
 	int food;
 // structure ghost modifiée : on se sert du dernier paramètre pour se souvenir si le fantome était sur de la nourriture ou pas
 };
+
+#endif

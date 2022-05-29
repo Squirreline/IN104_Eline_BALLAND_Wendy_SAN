@@ -229,14 +229,3 @@ void arrows() {
 		}
 	}
 }
-
-int main() {
-
-   srand(time(NULL));
-
-   init();
-   printf("\nPour vous déplacer : taper z/s/q/d puis entrée pour vous diriger respectivement haut/bas/gauche/droite \n Vous perdez une vie si vous rencontrez un G ou #");
-   arrows();
-
-
-}
