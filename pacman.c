@@ -42,7 +42,7 @@ char play_area[H][W] = {
 	   { "############################################################" }
 };
 
-
+//Fonction qui affiche le terrain de jeu
 void print_field() {
 	int i = 0;
 	int j = 0;
@@ -59,32 +59,27 @@ void print_field() {
 	printf("\n");
 }
 
+//Fonction qui initialise les fantômes et la nourriture
 void init() {
 	int i = 0;
 	int j = 1;
 	play_area[POS_X][POS_Y] = 'P';
-  srand(time(NULL));
+  	srand(time(NULL));
 	while (i<NB_GHOSTS) {
-
 		int x = POS_X;
 		int y = POS_Y;
-
 		while (play_area[x][y] == '#' || ((x == POS_X) && (y == POS_Y))){
 			x = (rand()%(H-2))+1;
 			y = (rand()%(W-2))+1;
 		}
-
 		all_the_ghosts[i].c.x = x;
 		all_the_ghosts[i].c.y = y;
 		all_the_ghosts[i].nx = 0;
 		all_the_ghosts[i].ny = 0;
 		all_the_ghosts[i].food = 1;
-
-    play_area[x][y] = 'G';
-
-		i++;
+    	play_area[x][y] = 'G';
+	i++;
 	}
-
 	i = 1;
 	while (i<H) {
 		while (j<W) {
@@ -98,22 +93,19 @@ void init() {
 	}
 }
 
+//Fonction qui vérifie le nombre de vies restantes à notre Pacman, renvoie false s'il n'y en a plus
 bool check_lives() {
-
 	if (PacMan.lives == 0) {
-		printf("Plus de vies. Nourriture récoltée : %d\n", PacMan.food);
+		printf("Vous n'avez plus de vie. Score: %d\n", PacMan.food);
 		return false;
-	}
-
-	else {
-		printf("\n\nLives : %d\nFood : %d\n",PacMan.lives,PacMan.food);
+	} else {
+		printf("\nVies : %d\nScore : %d\n",PacMan.lives,PacMan.food);
 		print_field();
 		return true;
 	}
-
 }
 
-
+//Fonction qui déplace Pacman
 void movePacman() {
 	play_area[PacMan.c.x][PacMan.c.y] = ' ';
 
@@ -142,6 +134,7 @@ void movePacman() {
 }
 
 
+//Fonction qui lit la saisie du clavier et met à jour la position des fantômes
 void arrows() {
   char move;
 	while (check_lives() == 1) {
@@ -169,8 +162,7 @@ void arrows() {
 			int i = 0;
 			int c = 0;
 			int k;
-			// On souhaite  ici choisir uniformément un mouvement parmi ceux qui sont possibles
-			// c compte le nombre de mouvement, et t contient les mouvements possibles
+			//Mise à jour de la position des fantômes
 			while (i < NB_GHOSTS) {
 				int t[10] = {0,0,0,0,0,0,0,0,0,0};
 				c = 0;
@@ -226,6 +218,8 @@ void arrows() {
 			}
 
 			movePacman();
+		} else { //On traite le cas où l'utilisateur saisit un autre caractère
+			printf("Merci de saisir une entrée valide : z (haut), s (bas), q (gauche), d (droite).\n");
 		}
 	}
 }
