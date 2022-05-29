@@ -47,10 +47,11 @@ int main(){
 
 		//Si le jeu choisi est pacman
 		if (x==2){
-			 b = true;
-			 init();
-   		printf("Utilisez une des touches suivantes pour vous déplacer : z (haut) s (bas) q (gauche) d (droite), suivie de la touche entrée.\n Pacman perd une vie dès qu'il rencontre un obstacle ou un fantôme.\n");
-   		arrows();
+			b = true;
+			init();
+			print_field();
+   			printf("Utilisez une des touches suivantes pour vous déplacer : z (haut) s (bas) q (gauche) d (droite), suivie de la touche entrée.\n Pacman perd une vie dès qu'il rencontre un obstacle ou un fantôme.\n");
+   			arrows();
 		}
 		else { //On traite le cas où l'utilisateur entre autre chose que 1 ou 2
 		printf("Merci de saisir un chiffre entre 1 et 2.\n");

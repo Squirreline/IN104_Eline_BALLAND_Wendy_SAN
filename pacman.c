@@ -100,7 +100,7 @@ bool check_lives() {
 		return false;
 	} else {
 		printf("\nVies : %d\nScore : %d\n",PacMan.lives,PacMan.food);
-		print_field();
+		//print_field();
 		return true;
 	}
 }
@@ -138,6 +138,7 @@ void movePacman() {
 void arrows() {
   char move;
 	while (check_lives() == 1) {
+		print_field();
 		scanf("%c",&move);
 		if (move == 'z' || move == 'q' || move == 's' || move == 'd') {
 			if (move == 'z') {
@@ -158,7 +159,7 @@ void arrows() {
 			if (move == 'd') {
 				PacMan.ny = 1;
 				PacMan.nx = 0;
-			}
+			} 
 			int i = 0;
 			int c = 0;
 			int k;
@@ -218,8 +219,6 @@ void arrows() {
 			}
 
 			movePacman();
-		} else { //On traite le cas où l'utilisateur saisit un autre caractère
-			printf("Merci de saisir une entrée valide : z (haut), s (bas), q (gauche), d (droite).\n");
 		}
 	}
 }
